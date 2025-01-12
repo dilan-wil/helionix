@@ -106,7 +106,7 @@ export default function Home() {
       <Card className="bg-white shadow-lg">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-blue-600">
-            Current Balance
+            Solde Actuel
           </CardTitle>
           <Wallet className="h-4 w-4 text-blue-600" />
         </CardHeader>
@@ -151,7 +151,7 @@ export default function Home() {
           <ul className="space-y-2">
             <li className="flex justify-between items-center">
               <span className="text-blue-600">Nombre de plans</span>
-              <span className="font-bold text-blue-800">{userInfo.plans === null ? 0 : userInfo.plans.length}</span>
+              <span className="font-bold text-blue-800">{userInfo.plans === undefined ? 0 : userInfo?.plans?.length}</span>
             </li>
             <li className="flex justify-between items-center">
               <span className="text-blue-600">Referral Earnings</span>

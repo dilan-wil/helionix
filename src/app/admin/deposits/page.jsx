@@ -81,7 +81,7 @@ const AdminDepositPage = () => {
                   <CardContent className="space-y-2">
                     <div className="flex items-center text-blue-700">
                       <DollarSign className="w-5 h-5 mr-2" />
-                      Amount: ${deposit.amount.toFixed(2)}
+                      Amount: XAF{deposit.amount.toFixed(2)}
                     </div>
                     <div className="flex items-center text-blue-700">
                       {/* <User className="w-5 h-5 mr-2" /> */}
