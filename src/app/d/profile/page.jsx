@@ -9,13 +9,7 @@ import { signOut, sendPasswordResetEmail } from "firebase/auth";
 import { useRouter } from "next/navigation"
 import { useToast } from '@/hooks/use-toast'
 
-const accountSummary = {
-  currentBalance: 15000,
-  totalDeposited: 20000,
-  totalWithdrawn: 5000,
-  referralEarnings: 500,
-  activePlans: 2,
-}
+
 
 export default function Profile() {
   const {userInfo} = useAuth()
@@ -66,7 +60,7 @@ export default function Profile() {
           </div>
           <div className="flex justify-between">
             <span className="text-blue-700">Nombre de plans:</span>
-            <span className="font-bold text-blue-900">{userInfo?.plans.length ?? 0}</span>
+            <span className="font-bold text-blue-900">{userInfo?.plans?.length ?? 0}</span>
           </div>
         </CardContent>
       </Card>

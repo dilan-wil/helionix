@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -32,10 +32,20 @@ export default function Investments() {
   const [loading, setLoading] = useState(false)
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const [userPLans, setUserPlans] = useState([]);
   const { userInfo, setUserInfo, setTransactions } = useAuth();
   const router = useRouter()
   const now = new Date();
   const { toast } = useToast()
+
+  useEffect(() => {
+    console.log(userInfo)
+    if(userInfo?.plans){
+      setUserPlans(userInfo?.plans)
+    } else {
+      setUserPlans([])
+    }
+  }, [userInfo])
 
   const handleBuyClick = (plan) => {
     setSelectedPlan(plan);
@@ -279,9 +289,9 @@ export default function Investments() {
             <CardTitle className="text-blue-900">Mes Plans Active</CardTitle>
           </CardHeader>
           <CardContent className="pt-4">
-            {userInfo.plans.length > 0 ? (
+            {userPLans.length > 0 ? (
               <ul className="space-y-2">
-                {userInfo.plans.map((plan) => {
+                {userPLans.map((plan) => {
                   return (
                     <Card key={plan.instanceId} className="bg-white shadow-lg border-t-4 border-blue-500">
                       <CardHeader
