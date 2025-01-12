@@ -4,20 +4,7 @@ import { db } from "@/functions/firebase"; // Import your Firebase instance
 import { updateDoc, doc, collection, getDocs } from "firebase/firestore";
 
 const WithdrawalPage = () => {
-  const [withdrawals, setWithdrawals] = useState<
-    {
-      id: string;
-      userId?: string;
-      gateway?: string;
-      amount?: number;
-      numero?: number;
-      nom?: string;
-      a_envoyer?: number;
-      charge?: number;
-      status?: string;
-      date?: string;
-    }[]
-  >([]);
+  const [withdrawals, setWithdrawals] = useState([]);
 
   useEffect(() => {
     // Fetch withdrawals from Firestore
@@ -34,7 +21,7 @@ const WithdrawalPage = () => {
     fetchWithdrawals();
   }, []);
 
-  const handleUpdateStatus = async (w: any) => {
+  const handleUpdateStatus = async (w) => {
     // Update withdrawal status to 'success' in Firestore
     const withdrawalRef = doc(db, "withdrawals", w.id);
     await updateDoc(withdrawalRef, { status: "success" });
@@ -57,7 +44,7 @@ const WithdrawalPage = () => {
     );
   };
 
-  const handleRefuseStatus = async (w: any) => {
+  const handleRefuseStatus = async (w) => {
     // Update withdrawal status to 'failed' in Firestore
     const withdrawalRef = doc(db, "withdrawals", w.id);
     await updateDoc(withdrawalRef, { status: "failed" });
@@ -87,7 +74,7 @@ const WithdrawalPage = () => {
     <div>
       <h1>Withdrawal</h1>
       <ul>
-        {pendingWithdrawals.map((w: any) => (
+        {pendingWithdrawals.map((w) => (
           <div key={w.id}>
             <li>
               <table>
