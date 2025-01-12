@@ -106,7 +106,7 @@ export default function Investments() {
       // Update transactions by appending the new transaction
       setTransactions((prevTransactions) => [...prevTransactions, newTransaction]);
 
-      if (!userInfo.plan) {
+      if (!userInfo.plans) {
         await addReferralBonus(userInfo.referredBy, selectedPlan.prix)
       }
 

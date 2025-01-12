@@ -9,12 +9,12 @@ import { addDoc, collection ,doc, setDoc, serverTimestamp } from "firebase/fires
 //   username: string;
 //   country: string;
 //   telephone: string,
-//   referral_code: string 
+//   referralCode: string 
 //   invite?: string 
 // }
 
 export async function signup(formData) {
-  const { email, password, name, referral_code } = formData;
+  const { email, password, name, referralCode } = formData;
   try {
     // Sign up the user
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -29,16 +29,16 @@ export async function signup(formData) {
       uid: user.uid,
       email: user.email,
       name,
-      referredBy: referral_code || null,
+      referredBy: referralCode || null,
       referralEarnings: 0,
       balance: 0,
       createdAt: serverTimestamp(),
     });
 
-    if(referral_code){
-      await setDoc(doc(db, "users", referral_code, "referrals", user.uid), {
+    if(referralCode){
+      await setDoc(doc(db, "users", referralCode, "referrals", user.uid), {
         uid: user.uid,
-        name: first_name,
+        name: name,
         status: "active"
       });
     }

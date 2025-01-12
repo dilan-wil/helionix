@@ -103,7 +103,7 @@ export default function Deposit() {
                 <p>Numero: {paymentMethods[paymentMethod].number}</p>
                 <p>Nom du compte: {paymentMethods[paymentMethod].account}</p>
                 <p className="font-bold">
-                  Une fois le dépot effectué, veuillez entrez le montant et l'ID de transaction, et vos fonds vous seront crédités dans les 5 à 10 minutes.
+                  Une fois le dépot effectué, veuillez entrez le montant et l'ID de transaction, et vos fonds vous seront crédités dans les 5 minutes.
                 </p>
               </div>
             )}
