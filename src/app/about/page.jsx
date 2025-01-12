@@ -1,11 +1,16 @@
-import Image from "next/image";
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Sun, Wind, Droplet, Leaf, CircleChevronLeft } from 'lucide-react'
+import { useRouter } from "next/navigation"
 
-export default function Home() {
+export default function About() {
+    const router = useRouter()
   return (
     <div className="p-4 space-y-6 pb-20 bg-blue-50">
-      <h1 className="text-3xl font-bold text-blue-900 text-center">À propos de Helionix</h1>
+      <h1 className="flex gap-5 items-center text-3xl font-bold text-blue-900 text-center">
+        <CircleChevronLeft onClick={() => router.back()} />
+        À propos de Helionix</h1>
       
       <Card className="bg-white shadow-lg border-t-4 border-blue-500">
         <CardHeader>
@@ -102,5 +107,5 @@ export default function Home() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
