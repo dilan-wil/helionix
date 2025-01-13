@@ -154,7 +154,7 @@ export default function Home() {
               <span className="font-bold text-blue-800">{userInfo.plans === undefined ? 0 : userInfo?.plans?.length}</span>
             </li>
             <li className="flex justify-between items-center">
-              <span className="text-blue-600">Referral Earnings</span>
+              <span className="text-blue-600">Gains d'affiliation</span>
               <span className="font-bold text-green-600">XAF{userInfo.referralEarnings}</span>
             </li>
           </ul>

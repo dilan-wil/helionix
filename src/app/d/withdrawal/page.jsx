@@ -108,7 +108,6 @@ export default function Withdrawal() {
                 <SelectContent>
                   <SelectItem value="orange-money">Orange Money</SelectItem>
                   <SelectItem value="mtn-money">MTN Money</SelectItem>
-                  <SelectItem value="crypto">Crypto</SelectItem>
                 </SelectContent>
               </Select>
             </div>
