@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/helionixIcon.png" type="image/png" />
       </head>
       <body
