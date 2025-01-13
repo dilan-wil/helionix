@@ -14,7 +14,7 @@ export function WhatsAppButton() {
           <Button 
             variant="outline" 
             className="bg-green-500 hover:bg-green-600 text-white border-none shadow-lg"
-            onClick={() => window.open('https://chat.whatsapp.com/GLsqgvg998T4h99jm8JEoS', '_blank')}
+            onClick={() => window.open('https://chat.whatsapp.com/CZw1CClidCVEFa2mpvMSyw', '_blank')}
           >
             WhatsApp Group
           </Button>
