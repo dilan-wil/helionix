@@ -69,7 +69,7 @@ export default function Profile() {
 
       <Card className="bg-white shadow-md border-t-4 border-blue-500">
         <CardHeader>
-          <CardTitle className="text-blue-900">Informations Personelle</CardTitle>
+          <CardTitle className="text-blue-900">Informations Personelles</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center">
