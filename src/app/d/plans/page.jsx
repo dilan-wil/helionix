@@ -24,7 +24,7 @@ const plans = [
   { id: 5, name: 'Helionix Horizon', prix: 50000, duree: 40, daily: 10000, image: 'https://img.freepik.com/free-photo/side-view-wind-turbine-silhouette-generating-electricity_23-2148895390.jpg?t=st=1736604505~exp=1736608105~hmac=5b4dd863d47ea4c630793d36f8b800e56df093ec76a2bae71769f0e02acb7711&w=900' },
   { id: 6, name: 'Helionix Catalyst', prix: 100000, duree: 40, daily: 20000, image: 'https://img.freepik.com/free-photo/medium-shot-smiley-engineer-holding-tablet_23-2149354001.jpg?t=st=1736604526~exp=1736608126~hmac=6f12f15ae0e7d775eed39ecec3fc362365ce65d95a9bb99ae08b8dd01ba9ce18&w=900' },
   { id: 7, name: 'Helionix Orbit', prix: 250000, duree: 40, daily: 50000, image: 'https://img.freepik.com/free-photo/wind-turbines-field_329181-1638.jpg?t=st=1736604550~exp=1736608150~hmac=413fb62c739d63d296292e65a44117524f78783bc7c550639d3977229d5b8b47&w=900' },
-  { id: 8, name: 'Helionix Pulsar', prix: 250000, duree: 40, daily: 100000, image: 'https://img.freepik.com/free-photo/wind-fans-with-cloudless-day_1160-406.jpg?t=st=1736604592~exp=1736608192~hmac=72b67ffddf1cfc411458b8c6eecd5815b412331eb26b2107e649e7c529d29f27&w=996' },
+  { id: 8, name: 'Helionix Pulsar', prix: 500000, duree: 40, daily: 100000, image: 'https://img.freepik.com/free-photo/wind-fans-with-cloudless-day_1160-406.jpg?t=st=1736604592~exp=1736608192~hmac=72b67ffddf1cfc411458b8c6eecd5815b412331eb26b2107e649e7c529d29f27&w=996' },
 ]
 
 export default function Investments() {
