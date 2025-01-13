@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 import React from 'react'
 import { getADocument } from '@/functions/get-a-document'
 import { listenToSubCollection } from '@/functions/get-a-sub-collection'
+import { WhatsAppButton } from '../../components/WhatsappButton'
 
 export default function DashboardLayout({ children }) {
   const { user, userInfo, setUserInfo, setTransactions, setReferrals } = useAuth()
@@ -45,6 +46,7 @@ export default function DashboardLayout({ children }) {
     <ProtectedRoute>
       <div className={`${inter.className} flex flex-col min-h-screen bg-blue-50`}>
         {children}
+        <WhatsAppButton />
         <BottomNav />
       </div>
     </ProtectedRoute>

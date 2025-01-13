@@ -16,12 +16,17 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Helionix Investment",
   description: "Découvrez Helionix – votre passerelle vers l'investissement dans les énergies renouvelables. Apprenez-en plus sur notre mission de démocratiser l'accès à l'énergie solaire, éolienne, hydroélectrique et aux innovations vertes. Explorez notre histoire, nos projets et notre vision pour un avenir durable grâce à des opportunités d'investissement intelligentes, transparentes et accessibles.",
-  
+  icons: {
+    icon: "/helionixIcon.png"
+  }
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/helionixIcon.png" type="image/png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

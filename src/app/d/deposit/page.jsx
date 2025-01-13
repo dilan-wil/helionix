@@ -12,9 +12,9 @@ import { addDeposit } from '@/functions/add-deposit'
 import { useToast } from '@/hooks/use-toast'
 
 const paymentMethods = {
-  'orange-money': { name: 'Orange Money', number: '+123 456 7890', account: 'test' },
-  'mtn-money': { name: 'MTN Money', number: '+234 567 8901', account: 'test' },
-  'crypto': { name: 'Crypto', address: '0x1234...5678' },
+  'orange-money': { name: 'Orange Money', number: '657540712', account: 'Ghislain Domsi Kamdem' },
+  'mtn-money': { name: 'MTN Money', number: '670011272', account: 'Francine Mamiafo' },
+  // 'crypto': { name: 'Crypto', address: '0x1234...5678' },
 }
 
 export default function Deposit() {

@@ -131,77 +131,92 @@ export default function Investments() {
 
   const handleTaskClick = async (plan) => {
     if (loading) return;
-
+  
     const now = new Date();
     const lastClicked = plan.lastClicked ? new Date(plan.lastClicked) : null;
-
-    // Enforce 24-hour cooldown
-    if (lastClicked && now.getTime() - lastClicked.getTime() < 24 * 60 * 60 * 1000) {
-      const timeLeft = 24 * 60 * 60 * 1000 - (now.getTime() - lastClicked.getTime());
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-
+    const purchaseDate = plan.purchaseDate ? new Date(plan.purchaseDate) : null;
+  
+    // Check if the task is being accessed on the same day as the purchase
+    if (purchaseDate && now.toDateString() === purchaseDate.toDateString()) {
       toast({
         variant: "destructive",
-        title: "24h.",
-        description: `Vous devez attendre encore ${hours} heures et ${minutes} minutes avant de refaire cette tâche.`,
-      })
+        title: "Première tâche indisponible.",
+        description: "Votre première tâche sera disponible demain à 00h.",
+      });
       return;
     }
-
+  
+    // Check if the task was already clicked today
+    if (lastClicked && now.toDateString() === lastClicked.toDateString()) {
+      toast({
+        variant: "destructive",
+        title: "Déjà effectué aujourd'hui.",
+        description: "Vous avez déjà effectué cette tâche aujourd'hui. Revenez demain pour recommencer.",
+      });
+      return;
+    }
+  
     // Prevent further clicks if times are exhausted
     if (plan.times <= 0) {
       toast({
         variant: "destructive",
-        title: "Plus de taches.",
-        description: "Vous avez épuisé le nombre de taches pour ce plan.",
-      })
+        title: "Plus de tâches.",
+        description: "Vous avez épuisé le nombre de tâches pour ce plan.",
+      });
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
       const userDocRef = doc(db, "users", userInfo?.uid);
-
-      // Update the clicked plan
+  
+      // Filter and calculate earnings only for plans available today
+      const availablePlans = userInfo?.plans.filter((p) => {
+        const planPurchaseDate = p.purchaseDate ? new Date(p.purchaseDate) : null;
+  
+        // A plan is available if it was purchased before today
+        return planPurchaseDate && now > planPurchaseDate && p.times > 0;
+      });
+  
+      const totalDailyEarnings = availablePlans.reduce(
+        (sum, p) => sum + (p.id === plan.id ? p.daily : 0),
+        0
+      );
+  
       const updatedPlans = userInfo?.plans.map((p) =>
         p.id === plan.id
           ? {
-            ...p,
-            times: p.times - 1,
-            lastClicked: now.toISOString(),
-          }
+              ...p,
+              times: p.times - 1,
+              lastClicked: now.toISOString(),
+            }
           : p
       );
-
-      const totalDailyEarnings = userInfo?.plans
-        .filter((p) => p.id === plan.id)
-        .reduce((sum, p) => sum + (p.times > 0 ? p.daily : 0), 0);
-
+  
       const newBalance = userInfo?.balance + totalDailyEarnings;
-
+  
       // Update Firestore with new plans data and balance
       await updateDoc(userDocRef, {
         plans: updatedPlans,
         balance: newBalance,
-        earned: increment(totalDailyEarnings)
+        earned: increment(totalDailyEarnings),
       });
-
+  
       const transactionsCollectionRef = collection(userDocRef, "transactions");
       const newTransaction = {
         description: `Gain du plan ${plan.name}`,
         transactionId: plan.name,
-        type: "Taches",
+        type: "Tâches",
         amount: totalDailyEarnings,
         charge: 0,
         status: "success",
         method: "system",
         date: new Date().toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" }),
       };
-
+  
       await addDoc(transactionsCollectionRef, newTransaction);
-
+  
       // Update local state
       setUserInfo({
         ...userInfo,
@@ -210,11 +225,11 @@ export default function Investments() {
       });
       // Update transactions by appending the new transaction
       setTransactions((prevTransactions) => [...prevTransactions, newTransaction]);
-
+  
       toast({
         variant: "success",
-        title: "Taches éffectué avec succès.",
-        description: "Vous avez éffectué votre taches. Vos gains ont été crédités.",
+        title: "Tâches effectuées avec succès.",
+        description: "Vous avez effectué votre tâche. Vos gains ont été crédités.",
       });
     } catch (error) {
       console.error("Error completing task:", error);
@@ -222,7 +237,9 @@ export default function Investments() {
     } finally {
       setLoading(false);
     }
-  };
+  };  
+  
+  
 
   // const handleInvest = (planId) => {
   //   console.log('Invested in plan:', planId)
@@ -311,8 +328,8 @@ export default function Investments() {
                           <span className="font-bold text-blue-900">{plan.prix}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-blue-700">Durée:</span>
-                          <span className="text-blue-900">{plan.duree} J</span>
+                          <span className="text-blue-700">Jours restant:</span>
+                          <span className="text-blue-900">{plan.times} J</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-blue-700">Revenu Quotidien:</span>
