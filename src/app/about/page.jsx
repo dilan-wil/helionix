@@ -94,7 +94,7 @@ export default function About() {
         </CardHeader>
         <CardContent>
           <p className="text-blue-700">
-            Fondée en 2025, Helionix est née de la vision d'un groupe d'experts en énergie renouvelable et en technologie financière. 
+            Fondée le 12 Janvier, 2025, Helionix est née de la vision d'un groupe d'experts en énergie renouvelable et en technologie financière. 
             Face à l'urgence climatique et au besoin croissant de solutions énergétiques durables, nos fondateurs ont reconnu 
             l'importance de mobiliser les investissements individuels pour accélérer la transition énergétique.
           </p>
