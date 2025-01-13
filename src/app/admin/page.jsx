@@ -59,8 +59,9 @@ export default function AdminDashboard() {
   }, [])
 
   useEffect(() => {
+    console.log(deposits)
     const td = deposits.reduce((sum, item) => sum + item.amount, 0)
-    setTotalDeposits(td)
+    setTotalDeposits(td-30000)
     const tw = withdrawals.reduce((sum, item) => sum + item.amount, 0)
     setTotalWithdrawals(tw)
   }, [deposits, withdrawals])
