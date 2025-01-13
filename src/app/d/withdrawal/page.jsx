@@ -58,7 +58,7 @@ export default function Withdrawal() {
         description: "Votre requete a été envoyée. Vous recevrez vos fonds dans un délai de 24h.",
       });
     } catch (error) {
-      if (error instanceof Error && error.message === "Amount must be greater than 1200") {
+      if (error instanceof Error && error.message === "Amount must be greater than 1000.") {
         toast({
           variant: "destructive",
           title: "Erreur de retrait.",
