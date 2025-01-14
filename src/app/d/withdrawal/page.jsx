@@ -108,6 +108,7 @@ export default function Withdrawal() {
                 <SelectContent>
                   <SelectItem value="orange-money">Orange Money</SelectItem>
                   <SelectItem value="mtn-money">MTN Money</SelectItem>
+                  <SelectItem value="crypto">crypto</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -129,7 +130,7 @@ export default function Withdrawal() {
 
             <div className="space-y-2">
               <label htmlFor="number" className="block text-sm font-medium text-gray-700">
-                {paymentMethod === 'crypto' ? 'Wallet Address' : 'Numero de Téléphone'}
+                {paymentMethod === 'crypto' ? 'USDT TRC20 Wallet Address' : 'Numero de Téléphone'}
               </label>
               <Input
                 type="text"

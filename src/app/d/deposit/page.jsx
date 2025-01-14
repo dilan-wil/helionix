@@ -14,17 +14,17 @@ import { useToast } from '@/hooks/use-toast'
 const paymentMethods = {
   'orange-money': { name: 'Orange Money', number: '657540712', account: 'Ghislain Domsi Kamdem' },
   'mtn-money': { name: 'MTN Money', number: '670011272', account: 'Francine Mamiafo' },
-  // 'crypto': { name: 'Crypto', address: '0x1234...5678' },
+  'crypto': { name: 'USDT', network: 'TRC20', number: 'TPeAE8zwT8qDhVHCkgngAQzNM13fsBy621' },
 }
 
 export default function Deposit() {
-  const {user} = useAuth()
+  const { user } = useAuth()
   const [amount, setAmount] = useState('')
   const [loading, setLoading] = useState(false)
   const [transactionId, setTransactionId] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('')
   const router = useRouter()
-  const {toast} = useToast()
+  const { toast } = useToast()
 
   const handleAddMoney = async (e) => {
     e.preventDefault();
@@ -92,20 +92,33 @@ export default function Deposit() {
                 <SelectContent>
                   <SelectItem value="orange-money">Orange Money</SelectItem>
                   <SelectItem value="mtn-money">MTN Money</SelectItem>
+                  <SelectItem value="crypto">USDT (Crypto)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {paymentMethod && (
-              <div className="bg-blue-50 p-3 rounded-md text-sm">
-                <p>Effectuez une transaction au :</p>
-                <p>Numero: {paymentMethods[paymentMethod].number}</p>
-                <p>Nom du compte: {paymentMethods[paymentMethod].account}</p>
-                <p className="font-bold">
-                  Une fois le dépot effectué, veuillez entrez le montant et l'ID de transaction, et vos fonds vous seront crédités dans les 5 minutes.
-                </p>
-              </div>
+              paymentMethod === 'crypto' ? (
+                <div className="bg-blue-50 p-3 rounded-md text-sm">
+                  <p>Effectuez une transaction USDT au :</p>
+                  <p>Numero: {paymentMethods[paymentMethod].number}</p>
+                  <p>Réseau: {paymentMethods[paymentMethod].network}</p>
+                  <p className="font-bold">
+                    Une fois le dépot effectué, veuillez entrez le montant et l'ID de transaction, et vos fonds vous seront crédités dans les 5 minutes.
+                  </p>
+                </div>
+              ) : (
+                <div className="bg-blue-50 p-3 rounded-md text-sm">
+                  <p>Effectuez une transaction au :</p>
+                  <p>Numero: {paymentMethods[paymentMethod].number}</p>
+                  <p>Nom du compte: {paymentMethods[paymentMethod].account}</p>
+                  <p className="font-bold">
+                    Une fois le dépot effectué, veuillez entrez le montant et l'ID de transaction, et vos fonds vous seront crédités dans les 5 minutes.
+                  </p>
+                </div>
+              )
             )}
+
 
             <div className="space-y-2">
               <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
