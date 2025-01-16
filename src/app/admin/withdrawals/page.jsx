@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { db } from "@/functions/firebase"; // Import your Firebase instance
-import { updateDoc, doc, collection, getDocs } from "firebase/firestore";
+import { updateDoc, doc, collection, getDocs, increment } from "firebase/firestore";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle, AlertCircle, User, DollarSign } from "lucide-react";
@@ -54,8 +54,9 @@ const WithdrawalPage = () => {
     try {
       // Update withdrawal status to 'failed' in Firestore
       const withdrawalRef = doc(db, "withdrawals", withdrawal.id);
+      const userRef = doc(db, "users", withdrawal.userId);
       await updateDoc(withdrawalRef, { status: "failed" });
-
+      await updateDoc(userRef, {balance: increment(withdrawal.amount)})
       // Update the corresponding transaction status in the user's subcollection
       const transactionRef = doc(db, "users", withdrawal.userId, "transactions", withdrawal.id);
       await updateDoc(transactionRef, { status: "failed" });

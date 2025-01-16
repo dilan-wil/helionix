@@ -43,7 +43,7 @@ export default function Withdrawal() {
       toast({
         variant: "destructive",
         title: "Heure de Retrait.",
-        description: "Les demandes de retrait se font exclusvivement entre 9h et 20h.",
+        description: "Les demandes de dépot se font exclusvivement entre 9h et 20h.",
       })
       return false;
     }
