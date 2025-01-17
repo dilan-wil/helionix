@@ -12,8 +12,8 @@ import { addDeposit } from '@/functions/add-deposit'
 import { useToast } from '@/hooks/use-toast'
 
 const paymentMethods = {
-  'orange-money': { name: 'Orange Money', number: '657540712', account: 'Ghislain Domsi Kamdem' },
-  'mtn-money': { name: 'MTN Money', number: '670011272', account: 'Francine Mamiafo' },
+  'orange-money': { name: 'Orange Money', number: '694918751', account: 'Maureen Enow Genge' },
+  'mtn-money': { name: 'MTN Money', number: '674323545', account: 'Vrouwa Hamidou Guire' },
   'crypto': { name: 'USDT', network: 'TRC20', number: 'TPeAE8zwT8qDhVHCkgngAQzNM13fsBy621' },
 }
 
