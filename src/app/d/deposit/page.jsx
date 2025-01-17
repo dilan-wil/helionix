@@ -31,18 +31,6 @@ export default function Deposit() {
     if (!user) {
       return false;
     }
-    const now = new Date();
-    const currentHour = now.getUTCHours() + 1; // Adjust to GMT+1
-    const currentMinutes = now.getUTCMinutes();
-
-    if (currentHour < 9 || (currentHour === 20 && currentMinutes > 0) || currentHour > 20) {
-      toast({
-        variant: "destructive",
-        title: "Heure de Retrait.",
-        description: "Les demandes de retrait se font exclusvivement entre 9h et 20h.",
-      })
-      return false;
-    }
     
     try {
       setLoading(true);
